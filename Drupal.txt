@@ -1,0 +1,5 @@
+
+SQL Pass Reset Drupal 6
+----------------------
+UPDATE users SET pass = md5('newpassword') WHERE uid = 1;
+

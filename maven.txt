@@ -1,0 +1,8 @@
+mvn clean: Deletes all generated files 
+mvn compile: Compiles the main Java classes.
+mvn test-compile: Compiles the test classes.
+mvn test: Compiles the main Java classes as well as the test classes and executes the tests.
+mvn package: Compiles, executes the tests and packages the code into an archive.
+mvn install: Builds and installs the artifacts in your local repository.
+mvn clean install: Cleans and installs. (Note that you can add several commands separated by a space.)
+

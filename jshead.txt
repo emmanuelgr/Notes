@@ -1,0 +1,6 @@
+jhead
+----------------------
+jhead -autorot -nf%Y%m%d%H%M%S .jpg
+
+jhead -autorot -a -nf%Y%m%d%H%M%S%d **/*.jpg
+jhead -autorot -nf%Y%m%d%H%M%S%d **/*.jpg

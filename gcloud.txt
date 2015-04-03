@@ -1,0 +1,5 @@
+list accounts-----------
+gcloud auth list
+
+update components---------
+gcloud components update

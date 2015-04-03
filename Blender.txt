@@ -1,0 +1,6 @@
+Blender rotation offsets for Unity
+----------------------
+Delta Rotation
+X:90
+Y:0
+Z:180

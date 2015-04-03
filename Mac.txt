@@ -1,0 +1,37 @@
+Find file with text  <--------------------
+grep -R "stringToSearchFor" .
+
+Open app  <--------------------
+opens a file or a directory or URL
+-a application name
+> open
+
+processes accessing the Internet  <--------------------
+> sudo lsof -i
+
+Prevent system sleeping <--------------------
+−i Create an assertion to prevent the system from idle sleeping.
+−d Create an assertion to prevent the display from sleeping.
+> caffeinate
+
+Start http server <--------------------
+> python -m SimpleHTTPServer 8000
+
+Stress mac <--------------------
+> yes
+
+Running processes <--------------------
+> top
+
+Find file <--------------------
+> find ~/Desktop -name '*fileNameEnds'
+
+Locate file cached, db  <--------------------
+-i case insensitive
+> locate -i filename
+
+Kill program <--------------------
+pid process id, find with top or activity Monitor
+name the name of the process
+-9 flag terminates non responsive app
+>kill pid || name

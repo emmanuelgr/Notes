@@ -1,0 +1,2 @@
+Kill Skype on Ubuntu------
+killall skype -s 9
