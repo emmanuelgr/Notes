@@ -1,0 +1,11 @@
+boot2docker init
+$ boot2docker up
+$ $(boot2docker shellinit)
+
+
+# Check that Docker is running-------
+$ boot2docker up
+
+You'll need to run $ $(boot2docker shellinit) in every terminal window
+you open in order for boot2docker to communicate with the Docker daemon.
+$ $(boot2docker shellinit)

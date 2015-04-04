@@ -30,6 +30,12 @@ Locate file cached, db  <--------------------
 -i case insensitive
 > locate -i filename
 
+# view man pages in Preview   <--------------------
+man+(){
+  man -t "${1}" | open -f -a /Applications/Preview.app/
+}
+
+
 Kill program <--------------------
 pid process id, find with top or activity Monitor
 name the name of the process

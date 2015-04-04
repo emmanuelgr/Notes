@@ -1,5 +1,38 @@
-list accounts-----------
+Documentation ---------
+https://cloud.google.com/sdk/gcloud/
+
+Console ------
+https://cloud.google.com/console
+
+Install the Cloud SDK ------------
+$ curl https://sdk.cloud.google.com | bash
+
+Update components---------
+gcloud components update
+
+Authorize the Cloud SDK.----------
+$ gcloud auth login
+
+List accounts-----------
 gcloud auth list
 
-update components---------
-gcloud components update
+Activate account--------
+$ gcloud config set account ACCOUNT
+
+List your gcloud projects-----------------
+$ gcloud preview projects list
+
+Set the default gcloud project ------------
+$ gcloud config set project <project id>
+
+Run the app locally
+$ gcloud preview app run .
+
+Visit --------
+http://localhost:8000
+
+Deploy your app to App Engine--------
+$ gcloud preview app deploy .
+
+Visit to see the result--------
+https://<project-id>.appspot.com
