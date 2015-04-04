@@ -1,0 +1,123 @@
+sqlite3 {database file name}
+Open/Create a Database If the database exists it will be opened, if it doesn’t exist, it will be created 
+
+;
+Add semicolumn after each query
+
+.tables
+to see a list of the tables in the database
+
+.show
+Options
+
+.mode
+show the results of a query in different formats
+"csv", "column", "html", "insert", "line", "list", "tabs","tcl"
+
+.output stdout
+Output query results to a screen
+
+.output {filename.txt}
+Output query results to a file
+
+
+Print database structure and data
+
+.dump
+
+
+.explain on
+Turn on column names on query results
+
+.schema
+Print the database structure
+
+
+.width
+sets the width of the columns , by default they get truncated by 10 characters
+
+create table {table name} ('{column name}' {data type} primary key, '{column name}' {data type});
+Eg:CREATE TABLE my_things('id' int primary key, 'name' varchar(20), 'description' varchar(50));
+
+alter table {table name} ADD '{column name}' {data type};
+Adding a Column to a Table
+Eg:alter table my_things ADD 'description' varchar(50);
+
+Data Types------------------
+NULL - The value is a NULL value
+INTEGER a signed integer
+REAL - a floating point value
+TEXT - a text string
+BLOB - a blob of data
+
+drop table {table name};
+Deleting a table
+
+insert into {table name} values ({data}, {more data}, '{yet more data}');
+Eg:insert into my_things values (1, 'My first thing', 'It is nice');
+Inserting Data into a Table
+
+
+Resource file-----------------
+The sqlite3 tool has a resource file called .sqliterc. It is located in the home directory. If there is no such file, we can simply create it. We can place the meta commnads there or the regular SQL statements. However, we should avoid using SQL in the resource file.
+$ cat .sqliterc 
+.mode column
+.header on
+.nullvalue NULL
+
+
+
+Operators--------------------
+||
+*    /    %
++    -
+<<   <>   &    |
+<    <=   >    >=
+=    ==   !=   <>   IS  IN  LIKE  GLOB  BETWEEN
+AND   
+OR
+Operators are arranged according to the precedence. The || operator has the highest order of precedence, the OR operator the lowest. 
+
+AND, OR, NOT
+Boolean operators
+
+||---------
+The || operator is a string concatenation operator. It simply joins strings.
+
+IN-------
+We can use the IN operator in two cases.
+sqlite> SELECT 'Tom' IN ('Tom', 'Frank', 'Jane');
+1
+
+sqlite> SELECT * FROM Cars WHERE Name IN ('Audi', 'Hummer');
+
+LIKE-------
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+sqlite>  SELECT * FROM Cars WHERE Name LIKE 'Vol%';
+
+sqlite> SELECT * FROM Cars WHERE Name LIKE '____';
+Here we select a car name, that has exactly four characters. There are four underscores.
+
+GLOB--------
+The GLOB operator is similar to the LIKE, but uses the Unix file globbing syntax for its wildcards. Also, GLOB is case sensitive, unlike LIKE.
+
+sqlite> SELECT * FROM Cars WHERE Name GLOB '*en';
+Id          Name        Cost      
+----------  ----------  ----------
+6           Citroen     21000     
+8           Volkswagen  21600 
+Here we have cars, whose names end with 'en' characters.
+
+sqlite> SELECT * FROM Cars WHERE Name GLOB '????';
+Id          Name        Cost      
+----------  ----------  ----------
+1           Audi        52642 
+Here we again select a car name, that has exactly four characters.
+
+sqlite> SELECT * FROM Cars WHERE Name GLOB '*EN';
+sqlite> SELECT * FROM Cars WHERE Name LIKE '%EN';
+Id          Name        Cost      
+----------  ----------  ----------
+6           Citroen     21000     
+8           Volkswagen  21600 

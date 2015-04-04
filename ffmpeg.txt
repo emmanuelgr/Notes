@@ -1,0 +1,67 @@
+mkdir frames
+ffmpeg -i input -vf scale=320:-1 -r 10 frames/ffout%03d.png
+Then use convert from ImageMagick (or GraphicsMagick) to make your animated GIF:
+
+convert -delay 5 -loop 0 frames/ffout*.png output.gif
+
+If you would prefer to avoid intermediate image files, the commands provided by LordNeckBeard can be piped between ffmpeg and ImageMagick's convert so that no intermediate files are required:
+
+ffmpeg -i input -vf scale=320:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -loop 0 - output.gif
+The -f image2pipe tells ffmpeg to split the video into images and make it suitable to be piped out, and -vcodec ppm specifies the output format to be ppm (for some reason if the format is png, either convert does not read all the images from the pipe, or ffmpeg does not output them all). The - for both commands specifies that a pipe will be used for output and input respectively.
+
+To optimize the result without saving a file, you can pipe the output from convert to a second convert command:
+
+ffmpeg -i input -vf scale=320:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -loop 0 - gif:- | convert -layers Optimize - output.gif
+The gif:- tells convert to pipe its output as gif formatted data and -layers Optimize tells the second convert to perform optimize-frame and optimize-transparancy methods (see the ImageMagick Introduction to Animation Optimization). Note that the output from the -layers Optimize may not always provide a smaller file size, so you may want to try converting to a gif without optimization first to be sure.
+
+Remember that during this whole process everything is in memory so you may need sufficient memory if the images are quite large.
+
+
+ffmpeg -i input -vf scale=200:-1 -r 10 -f image2pipe -vcodec ppm - | convert -delay 5 -loop 0 - output.gif
+
+
+ffmpeg -i "final Lagarith.avi" -vf scale=200:-1 -r 1 -f image2pipe -vcodec ppm - | convert -delay 50 -loop 0 - output.gifcls
+
+
+-vf "scale=-1:200, crop=200:200"
+
+ffmpeg -i "final Lagarith.avi" -vf "scale=-1:200, crop=200:200" -r 1 -f image2pipe -vcodec ppm - | convert -delay 50 -loop 0 - output.gif
+
+SCALE AND CROP
+ffmpeg -i "final Lagarith.avi" 
+-vf "scale=-1:200, crop=200:200" -r 2 -f image2pipe -vcodec ppm - | convert -delay 50 -loop 0 - output.gif
+
+-vf "scale=-1:200, cropdetect" 200.mp4
+
+
+Multiple encodings for same input
+ffmpeg -i input -an -filter_complex "[0]scale=1000:1000, split=2[a][b]" -map "[a]" output.mp4 -map "[b]" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis output.webm 
+
+
+
+ffmpeg -y -i input -filter_complex "scale=180:-1, split=2[a][b]"  -map "[a]" -c:v libx264 -preset veryslow output.mp4 -map "[b]" -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis output.webm
+
+-crf 4 -b:v 1M
+
+
+Transperancy
+--------------------------------
+FFMPEG with Quicktime Animation (RLE) or FFVHUFF/HUFFYUV will do.
+
+ffmpeg -i input%d.png -vcodec qtrle output.mov
+ffmpeg -i input%d.png -vcodec ffvhuff output.avi
+ffmpeg -i input%d.png -vcodec huffyuv output.avi
+ffmpeg -i input%d.png -vcodec png output.mov
+
+
+
+CROPDETECT
+ffplay -i YourMovie.mp4 -vf "cropdetect=24:16:0" 
+
+cropdetect = limit:round:reset
+
+limit = The threshold of the intensity of the black bar. You can play around with that, it worked mostly well for me with the default value 24 60
+
+round = Ensures the output resolution is divisible by the value specified. 16 is best for most video codecs.
+
+reset = Determines after how many frames cropdetect will reset the previously detected largest video area and start over to detect the current optimal crop area. This is especially useful when tv logos interrupt the video.
