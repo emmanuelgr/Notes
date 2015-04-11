@@ -19,8 +19,10 @@ sudo lsof -i
 ```
 
 ###DiskUsage
+###### −s Display an entry for each specified file.
+###### −h "Human-readable" output
 ```sh
-du -sh
+du -sh xxxFileNamexxxx
 ```
 
 ###Prevent system sleeping
