@@ -1,10 +1,13 @@
 H1
 ==
-
 H2
 --
-
+# H1
+## H2
 ### H3
+#### H4
+##### H5
+###### H6
 
 **bold**
 
@@ -12,25 +15,31 @@ H2
 
 ~~Strikethrough~~
 
-1.	Ordered list
-2.	Ordered list
-3.	Ordered list
-4.	Ordered list
-
 hr
-
 ---
+Unorder list can be one of -,+,*
 
--	Unrdered list
--	Unrdered list
--	Unrdered list
--	Unrdered list
+-	Unrodered list
+   -	Unrodered sub list
+   -	Unrodered sub list
+-	Unrodered list
+-	Unrodered list
+
+Ordered list just need a number and dot
+
+1. Ordered list item
+1. Ordered list item
+   1. Ordered list item
+   1. Ordered list item
+1. Ordered list item
+1. Ordered list item
 
 ```javascript
 var foo = 'string';
 var boo = Math.random() * 10 + 1;
 ```
 
-`sh
-echo
-`
+ col1 | col2 | col3
+ -- | -- | --
+a | b | c
+1 |2 | 3
