@@ -1,7 +1,0 @@
-Migrate bzr to git
-----------------------
-git init &&
-   bzr fast-export `pwd` | git fast-import &&
-   rm -r .bzr &&
-   git reset HEAD &&
-   mv .bzrignore .gitignore
