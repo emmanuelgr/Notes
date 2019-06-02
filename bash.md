@@ -73,7 +73,10 @@ name the name of the process
 kill pid || name
 ```
 
+### read file lines
+```sh
 while read line
   do
       echo "$line"
   done < file.txt
+  ```
